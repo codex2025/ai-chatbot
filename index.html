@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - OpenAI & Gemini Compatible</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🤖 AI Chatbot</h1>
+        <button class="settings-btn" onclick="toggleSettings()">⚙️ Settings</button>
+    </header>
+
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-content">
+            <h2>API Configuration</h2>
+            <div class="setting-group">
+                <label for="apiProvider">AI Provider:</label>
+                <select id="apiProvider" onchange="updateProviderInfo()">
+                    <option value="openai">OpenAI (GPT-4, GPT-3.5)</option>
+                    <option value="gemini">Google Gemini</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label for="apiKey">API Key:</label>
+                <input type="password" id="apiKey" placeholder="Enter your API key here" autocomplete="off">
+                <button class="toggle-key" onclick="toggleKeyVisibility()">👁️ Show</button>
+            </div>
+            <div class="provider-info" id="providerInfo">
+                <p><strong>How to get OpenAI API key:</strong></p>
+                <ol>
+                    <li>Visit <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a></li>
+                    <li>Sign up or log in to your account</li>
+                    <li>Click "Create new secret key"</li>
+                    <li>Copy the key and paste it above</li>
+                </ol>
+                <p class="warning">⚠️ Never share your API key with anyone!</p>
+            </div>
+            <div class="settings-actions">
+                <button class="btn-primary" onclick="saveSettings()">💾 Save & Close</button>
+                <button class="btn-secondary" onclick="toggleSettings()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Chat Container -->
+    <div class="chat-container">
+        <div class="messages-area" id="messagesArea">
+            <div class="welcome-message">
+                <h2>👋 Welcome to AI Chatbot!</h2>
+                <p>Configure your API key in settings to start chatting.</p>
+                <button class="btn-primary" onclick="toggleSettings()">Configure API Key</button>
+            </div>
+        </div>
+        <div class="input-area">
+            <textarea 
+                id="userInput" 
+                placeholder="Type your message here... (Press Enter to send, Shift+Enter for new line)"
+                rows="1"
+                onkeydown="handleKeyPress(event)"
+            ></textarea>
+            <button id="sendBtn" class="send-btn" onclick="sendMessage()" disabled>
+                <span class="send-icon">➤</span>
+            </button>
+            <button class="clear-btn" onclick="clearChat()" title="Clear chat history">
+                🗑️
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Thinking...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
