@@ -1,31 +1,23 @@
-// ===========================
-// GLOBAL VARIABLES
-// ===========================
+
 let API_KEY = '';
-let API_PROVIDER = 'openai'; // openai or gemini
+let API_PROVIDER = 'openai'; 
 let conversationHistory = [];
 const API_ENDPOINTS = {
     openai: 'https://api.openai.com/v1/chat/completions',
     gemini: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 };
 
-// ===========================
-// INITIALIZATION
-// ===========================
 document.addEventListener('DOMContentLoaded', function() {
-    // Auto-resize for textarea
+
     const textarea = document.getElementById('userInput');
     textarea.addEventListener('input', function() {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
     });
-    // Load saved settings from session (if any)
+
     loadSessionSettings();
 });
 
-// ===========================
-// SETTINGS FUNCTIONS
-// ===========================
 function toggleSettings() {
     const panel = document.getElementById('settingsPanel');
     panel.classList.toggle('active');
@@ -87,9 +79,7 @@ function loadSessionSettings() {
     if (API_KEY) document.getElementById('sendBtn').disabled = false;
 }
 
-// ===========================
-// CHAT FUNCTIONS
-// ===========================
+
 function handleKeyPress(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
